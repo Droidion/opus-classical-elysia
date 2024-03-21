@@ -42,3 +42,56 @@ export function formatYearsRangeString(
   }
   return `${startYear}–${finishYear}`;
 }
+
+// FormatWorkLength formats minutes into a string with hours and minutes, like "2h 35m"
+export function formatWorkLength(lengthInMinutes: number): string {
+  const hours = Math.floor(lengthInMinutes / 60);
+  const minutes = lengthInMinutes % 60;
+  if (hours === 0 && minutes === 0) {
+    return "";
+  }
+  if (hours < 0 || minutes < 0) {
+    return "";
+  }
+  if (hours === 0) {
+    return `${minutes}m`;
+  }
+  if (minutes === 0) {
+    return `${hours}h`;
+  }
+  return `${hours}h ${minutes}m`;
+}
+
+// FormatCatalogueName formats catalogue name of the musical work, like "BWV 12p".
+export function formatCatalogueName(
+  catalogueName: string | null,
+  catalogueNumber: number | null,
+  cataloguePostfix: string | null,
+): string {
+  if (catalogueName === null || catalogueNumber === null) {
+    return "";
+  }
+  return `${catalogueName} ${catalogueNumber}${cataloguePostfix || ""}`;
+}
+
+// FormatWorkName formats music work full name, like "Symphony No. 9 Great".
+export function formatWorkName(
+  workTitle: string,
+  workNo: number | null,
+  workNickname: string | null,
+  skipHtml = false,
+): string {
+  if (workTitle === "") {
+    return "";
+  }
+  let workName = workTitle;
+  if (workNo !== null) {
+    workName = `${workName} No. ${workNo}`;
+  }
+  if (workNickname !== null) {
+    workName = skipHtml
+      ? `${workName} ${workNickname}`
+      : `${workName} ${workNickname}`;
+  }
+  return workName;
+}

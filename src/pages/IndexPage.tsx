@@ -2,7 +2,7 @@ import { AppLayout } from "../components/AppLayout";
 import { ComposerCard } from "../components/ComposerCard";
 import { dbConnect } from "../db/connect";
 import { getComposersByPeriods } from "../db/queries/composersByPeriods";
-import { formatYearsRangeString } from "../lib/formatYearsRangeString";
+import { formatYearsRangeString } from "../lib/helpers";
 
 export async function IndexPage(): Promise<string> {
   const periods = await getComposersByPeriods(dbConnect());
@@ -13,9 +13,9 @@ export async function IndexPage(): Promise<string> {
         {periods.map((period) => (
           <>
             <h2>
-              <span safe>{period.name},</span>
+              <span>{period.name},</span>
               <span> </span>
-              <span safe>
+              <span>
                 {formatYearsRangeString(period.yearStart, period.yearEnd)}
               </span>
             </h2>

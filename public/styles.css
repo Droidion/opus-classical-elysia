@@ -807,6 +807,10 @@ a:hover {
   padding-bottom: 1rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .font-serif {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }

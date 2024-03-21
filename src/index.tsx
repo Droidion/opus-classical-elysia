@@ -5,6 +5,7 @@ import { isHtml } from "@elysiajs/html";
 import { IndexPage } from "./pages/IndexPage";
 import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
+import { ComposerPage } from "./pages/ComposerPage";
 
 const app = new Elysia()
   .use(helmet())
@@ -16,6 +17,9 @@ const app = new Elysia()
     }
   })
   .get("/", () => <IndexPage></IndexPage>)
+  .get("/composer/:slug", ({ params: { slug } }) => (
+    <ComposerPage slug={slug}></ComposerPage>
+  ))
   .get("/composers", async () => await getComposersByPeriods(dbConnect()))
   .listen(3000);
 
