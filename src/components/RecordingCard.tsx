@@ -1,4 +1,4 @@
-import { Recording } from "../db/queries/recordingsByWork";
+import type { Recording } from "../db/queries/recordingsByWork";
 import { formatWorkLength, formatYearsRangeString } from "../lib/helpers";
 import { PerformerCard } from "./PerformerCard";
 import { StreamerCard } from "./StreamerCard";
@@ -26,9 +26,9 @@ export function RecordingCard({
         ))}
         <div class="text-xs font-light">
           <span>{recording.label}</span>
-          <span class="vertical-separator"></span>
+          <span class="vertical-separator" />
           <span>{composePeriod}</span>
-          <span class="vertical-separator"></span>
+          <span class="vertical-separator" />
           <span>{lengthFormatted}</span>
         </div>
         <div class="flex items-center">

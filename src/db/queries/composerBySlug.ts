@@ -42,7 +42,7 @@ export async function getComposerBySlug(
       ...composerData[0],
       countries: countriesData.map((country) => country.name).join(", "),
     };
-  } else {
-    throw new Error(`Composer with slug ${slug} not found`);
   }
+
+  throw new Error(`Composer with slug ${slug} not found`);
 }

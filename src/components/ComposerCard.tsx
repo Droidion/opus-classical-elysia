@@ -1,4 +1,4 @@
-import { Composer } from "../db/queries/composersByPeriods";
+import type { Composer } from "../db/queries/composersByPeriods";
 import { formatYearsRangeString } from "../lib/helpers";
 
 export function ComposerCard(
@@ -12,7 +12,7 @@ export function ComposerCard(
       </div>
       <div class="text-xs font-light">
         <span>{props.composer.countries}</span>
-        <span class="vertical-separator"></span>
+        <span class="vertical-separator" />
         <span>
           {formatYearsRangeString(
             props.composer.yearBorn,

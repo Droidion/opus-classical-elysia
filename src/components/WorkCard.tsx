@@ -1,4 +1,4 @@
-import { Work } from "../db/queries/worksByGenres";
+import type { Work } from "../db/queries/worksByGenres";
 import {
   formatWorkLength,
   formatYearsRangeString,

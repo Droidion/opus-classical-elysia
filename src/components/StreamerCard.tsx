@@ -1,4 +1,4 @@
-import { Streamer } from "../db/queries/recordingsByWork";
+import type { Streamer } from "../db/queries/recordingsByWork";
 
 export function StreamerCard({
   streamer,
@@ -6,7 +6,7 @@ export function StreamerCard({
   return (
     <div class="mr-2 mt-2">
       <a href={streamer.prefix + streamer.link}>
-        {streamer.streamer == `Spotify` && (
+        {streamer.streamer === "Spotify" && (
           <img
             src="/public/spotify-logo.svg"
             height="24"
@@ -15,7 +15,7 @@ export function StreamerCard({
           />
         )}
 
-        {streamer.streamer == `Qobuz` && (
+        {streamer.streamer === "Qobuz" && (
           <img
             src="/public/qobuz-logo.svg"
             height="24"

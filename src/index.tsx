@@ -25,12 +25,12 @@ const app = new Elysia()
       set.headers["Content-Type"] = "text/html; charset=utf8";
     }
   })
-  .get("/", () => <IndexPage></IndexPage>)
+  .get("/", () => <IndexPage />)
   .get("/composer/:slug", ({ params: { slug } }) => (
-    <ComposerPage slug={slug}></ComposerPage>
+    <ComposerPage slug={slug} />
   ))
   .get("/composer/:slug/work/:workId", ({ params: { workId } }) => (
-    <WorkPage workId={Number(workId)}></WorkPage>
+    <WorkPage workId={Number(workId)} />
   ))
   .get("/composers", async () => await getComposersByPeriods(dbConnect()))
   .listen(3000);

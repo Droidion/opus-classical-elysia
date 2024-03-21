@@ -24,7 +24,7 @@ export async function ComposerPage(
         </h1>
         <div class="mb-4 w-full text-center">
           <span>{composer.countries}</span>
-          <span class="vertical-separator"></span>
+          <span class="vertical-separator" />
           <span>{yearsLived}</span>
           {composer.wikipediaLink && (
             <>

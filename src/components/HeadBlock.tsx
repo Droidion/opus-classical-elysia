@@ -50,7 +50,7 @@ export function HeadBlock(
       <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
       <link rel="stylesheet" href="/public/styles.css" />
       <title>{props.title}</title>
-      <script src="/public/init-switcher.js" defer></script>
+      <script src="/public/init-switcher.js" defer />
     </head>
   );
 }

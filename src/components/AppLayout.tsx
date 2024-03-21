@@ -11,13 +11,10 @@ export function AppLayout(
       <html lang="en">
         <HeadBlock title={props.title} />
         <body>
-          <script src="/public/theme-loader.js"></script>
+          <script src="/public/theme-loader.js" />
           <div class="grid min-h-screen w-full grid-rows-[auto_1fr_auto] justify-items-center">
             <AppHeader />
-            <main
-              class="main flex w-full max-w-screen-xl flex-col overflow-auto px-4 pb-4"
-              role="main"
-            >
+            <main class="main flex w-full max-w-screen-xl flex-col overflow-auto px-4 pb-4">
               {props.children}
             </main>
             <AppFooter />
