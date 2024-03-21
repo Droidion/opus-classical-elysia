@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
 import { helmet } from "elysia-helmet";
 import { isHtml } from "@elysiajs/html";
-import { HelloWorld } from "./components/HelloWorld";
+import { IndexPage } from "./pages/IndexPage";
 import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
 
@@ -15,7 +15,7 @@ const app = new Elysia()
       set.headers["Content-Type"] = "text/html; charset=utf8";
     }
   })
-  .get("/", () => <HelloWorld></HelloWorld>)
+  .get("/", () => <IndexPage></IndexPage>)
   .get("/composers", async () => await getComposersByPeriods(dbConnect()))
   .listen(3000);
 
