@@ -6,9 +6,18 @@ import { IndexPage } from "./pages/IndexPage";
 import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
 import { ComposerPage } from "./pages/ComposerPage";
+import { WorkPage } from "./pages/WorkPage";
 
 const app = new Elysia()
-  .use(helmet())
+  .use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          imgSrc: [Bun.env.IMAGES_URL, "'self'", "data:"],
+        },
+      },
+    }),
+  )
   .use(staticPlugin())
   .onAfterHandle(({ response, set }) => {
     if (isHtml(response)) {
@@ -19,6 +28,9 @@ const app = new Elysia()
   .get("/", () => <IndexPage></IndexPage>)
   .get("/composer/:slug", ({ params: { slug } }) => (
     <ComposerPage slug={slug}></ComposerPage>
+  ))
+  .get("/composer/:slug/work/:workId", ({ params: { workId } }) => (
+    <WorkPage workId={Number(workId)}></WorkPage>
   ))
   .get("/composers", async () => await getComposersByPeriods(dbConnect()))
   .listen(3000);
