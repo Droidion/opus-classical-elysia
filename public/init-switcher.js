@@ -54,4 +54,3 @@ const init = () => {
 };
 
 init();
-document.addEventListener("astro:after-swap", () => init());

@@ -48,7 +48,9 @@ export function HeadBlock(
         href="/public/apple-touch-icon.png"
       />
       <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
+      <link rel="stylesheet" href="/public/styles.css" />
       <title safe>{props.title}</title>
+      <script src="/public/init-switcher.js" defer></script>
     </head>
   );
 }
