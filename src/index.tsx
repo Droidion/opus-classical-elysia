@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
 import { helmet } from "elysia-helmet";
 import { isHtml } from "@elysiajs/html";
-import { HelloWorld } from "./HelloWorld";
+import { HelloWorld } from "./components/HelloWorld";
 import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
 

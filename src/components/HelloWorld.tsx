@@ -1,9 +1,9 @@
-import { Layout } from "./Layout";
+import { AppLayout } from "./AppLayout";
 
 export function HelloWorld(): JSX.Element {
   return (
-    <Layout title="Hello world">
+    <AppLayout title="Hello world">
       <div class="m-8">Hello World</div>
-    </Layout>
+    </AppLayout>
   );
 }
