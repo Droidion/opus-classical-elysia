@@ -1,0 +1,18 @@
+= Opus Classical
+
+Curated catalogue for streaming classical music.
+
+Bun, Elysia, DrizzleORM, Turso, Tailwind.
+
+== Run locally
+
+* Have Bun installed.
+* Have Turso DB available in the cloud.
+* Create `.env` file with environment variables:
+  * `IMAGES_URL`
+  * `DATABASE_URL`
+  * `DATABASE_AUTH_TOKEN`
+* Install packages `$ bun i`.
+* Run tawilwind compiler in watch mode `$ bun run tailwind:dev`.
+* Run in parallel server in dev mode `$ bun run dev`.
+* Open http://localhost:3000
