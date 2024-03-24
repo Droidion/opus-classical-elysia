@@ -14,11 +14,18 @@ const app = new Elysia()
       contentSecurityPolicy: {
         directives: {
           imgSrc: [Bun.env.IMAGES_URL, "'self'", "data:"],
+          scriptSrcElem: ["'self'", "http://localhost:5173/"],
+          connectSrc: ["'self'", "ws://localhost:5173/"],
         },
       },
     }),
   )
-  .use(staticPlugin())
+  .use(
+    staticPlugin({
+      assets: "dist",
+      prefix: "/public",
+    }),
+  )
   .onAfterHandle(({ response, set }) => {
     if (isHtml(response)) {
       set.headers["Cache-Control"] = "max-age:300, private";

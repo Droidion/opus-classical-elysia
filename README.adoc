@@ -2,7 +2,7 @@
 
 Curated catalogue for streaming classical music.
 
-Bun, Elysia, DrizzleORM, Turso, Tailwind.
+Bun, Elysia, DrizzleORM, Turso, Tailwind, Vite.
 
 == Run locally
 
@@ -13,6 +13,6 @@ Bun, Elysia, DrizzleORM, Turso, Tailwind.
   * `DATABASE_URL`
   * `DATABASE_AUTH_TOKEN`
 * Install packages `$ bun i`.
-* Run tawilwind compiler in watch mode `$ bun run tailwind:dev`.
+* Run statis assets build in dev mode `$ bun run ui:dev`.
 * Run in parallel server in dev mode `$ bun run dev`.
 * Open http://localhost:3000

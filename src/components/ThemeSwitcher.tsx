@@ -17,6 +17,8 @@ export function ThemeSwitcher(): JSX.Element {
         <svg
           class="hidden h-4 w-4 xl:h-5 xl:w-5 dark:flex"
           viewBox="0 0 512 512"
+          height="18"
+          width="18"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -28,6 +30,8 @@ export function ThemeSwitcher(): JSX.Element {
           class="flex h-4 w-4 xl:h-5 xl:w-5 dark:hidden"
           viewBox="0 0 512 512"
           fill="currentColor"
+          height="18"
+          width="18"
           xmlns="http://www.w3.org/2000/svg"
         >
           <title>Dark mode switcher icon</title>

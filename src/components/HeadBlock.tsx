@@ -1,6 +1,31 @@
-export function HeadBlock(
+import { isProd } from "../lib/helpers";
+
+async function getProdAssets() {
+  const path = "./dist/.vite/manifest.json";
+  const file = Bun.file(path);
+  const contents = await file.json();
+  const jsPath = contents["src/scripts.ts"].file as string;
+  const cssPath = contents["src/scripts.ts"].css[0] as string;
+  return (
+    <>
+      <link rel="stylesheet" href={"/public/" + cssPath} />
+      <script defer type="module" src={"/public/" + jsPath} />
+    </>
+  );
+}
+
+function getDevAssets() {
+  return (
+    <>
+      <script type="module" src="http://localhost:5173/@vite/client" />
+      <script type="module" src="http://localhost:5173/src/scripts.ts" />
+    </>
+  );
+}
+
+export async function HeadBlock(
   props: Html.PropsWithChildren<{ title: string }>,
-): JSX.Element {
+): Promise<string> {
   return (
     <head>
       <meta charset="UTF-8" />
@@ -48,7 +73,8 @@ export function HeadBlock(
         href="/public/apple-touch-icon.png"
       />
       <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
-      <link rel="stylesheet" href="/public/styles.css" />
+      {isProd() && (await getProdAssets())}
+      {!isProd() && getDevAssets()}
       <title>{props.title}</title>
       <script src="/public/init-switcher.js" defer />
     </head>

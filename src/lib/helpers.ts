@@ -95,3 +95,5 @@ export function formatWorkName(
   }
   return workName;
 }
+
+export const isProd = () => Bun.env.NODE_ENV === "production";
