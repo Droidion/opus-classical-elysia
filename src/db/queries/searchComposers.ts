@@ -1,6 +1,6 @@
 import { t, type Static } from "elysia";
-import type { DrizzleDb } from "../connect";
-import { composers } from "../schema/composers";
+import type { DrizzleDb } from "@db/connect";
+import { composers } from "@db/schema/composers";
 
 export const FoundComposers = t.Array(
   t.Object({

@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { t, type Static } from "elysia";
-import type { DrizzleDb } from "../connect";
-import { composersCountries, countries } from "../schema";
+import type { DrizzleDb } from "@db/connect";
+import { composersCountries, countries } from "@db/schema";
 
 export const CountriesByComposer = t.Array(
   t.Object({

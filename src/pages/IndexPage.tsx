@@ -1,8 +1,8 @@
-import { AppLayout } from "../components/AppLayout";
-import { ComposerCard } from "../components/ComposerCard";
-import { dbConnect } from "../db/connect";
-import { getComposersByPeriods } from "../db/queries/composersByPeriods";
-import { formatYearsRangeString } from "../lib/helpers";
+import { AppLayout } from "@components/AppLayout";
+import { ComposerCard } from "@components/ComposerCard";
+import { dbConnect } from "@db/connect";
+import { getComposersByPeriods } from "@db/queries/composersByPeriods";
+import { formatYearsRangeString } from "@lib/helpers";
 
 export async function IndexPage(): Promise<string> {
   const periods = await getComposersByPeriods(dbConnect());

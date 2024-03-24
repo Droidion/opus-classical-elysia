@@ -1,4 +1,4 @@
-import { isProd } from "../lib/helpers";
+import { isProd } from "@lib/helpers";
 
 async function getProdAssets() {
   const path = "./dist/.vite/manifest.json";

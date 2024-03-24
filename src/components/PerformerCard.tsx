@@ -1,4 +1,4 @@
-import type { Performer } from "../db/queries/recordingsByWork";
+import type { Performer } from "@db/queries/recordingsByWork";
 
 export function PerformerCard(
   props: Html.PropsWithChildren<{ performer: Performer }>,

@@ -2,11 +2,11 @@ import { Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
 import { helmet } from "elysia-helmet";
 import { isHtml } from "@elysiajs/html";
-import { IndexPage } from "./pages/IndexPage";
-import { dbConnect } from "./db/connect";
-import { ComposerPage } from "./pages/ComposerPage";
-import { WorkPage } from "./pages/WorkPage";
-import { searchComposers } from "./db/queries/searchComposers";
+import { IndexPage } from "@pages/IndexPage";
+import { dbConnect } from "@db/connect";
+import { ComposerPage } from "@pages/ComposerPage";
+import { WorkPage } from "@pages/WorkPage";
+import { searchComposers } from "@db/queries/searchComposers";
 
 const app = new Elysia()
   .use(

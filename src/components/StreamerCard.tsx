@@ -1,4 +1,4 @@
-import type { Streamer } from "../db/queries/recordingsByWork";
+import type { Streamer } from "@db/queries/recordingsByWork";
 
 export function StreamerCard({
   streamer,

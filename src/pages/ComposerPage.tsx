@@ -1,9 +1,9 @@
-import { AppLayout } from "../components/AppLayout";
-import { WorkCard } from "../components/WorkCard";
-import { dbConnect } from "../db/connect";
-import { getComposerBySlug } from "../db/queries/composerBySlug";
-import { getWorksByGenres } from "../db/queries/worksByGenres";
-import { formatYearsRangeString } from "../lib/helpers";
+import { AppLayout } from "@components/AppLayout";
+import { WorkCard } from "@components/WorkCard";
+import { dbConnect } from "@db/connect";
+import { getComposerBySlug } from "@db/queries/composerBySlug";
+import { getWorksByGenres } from "@db/queries/worksByGenres";
+import { formatYearsRangeString } from "@lib/helpers";
 
 export async function ComposerPage(
   props: Html.PropsWithChildren<{ slug: string }>,

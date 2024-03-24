@@ -1,9 +1,9 @@
 import { and, eq, isNull } from "drizzle-orm";
 import { t, type Static } from "elysia";
-import type { DrizzleDb } from "../connect";
-import { catalogues } from "../schema";
-import { genres } from "../schema/genres";
-import { works } from "../schema/works";
+import type { DrizzleDb } from "@db/connect";
+import { catalogues } from "@db/schema";
+import { genres } from "@db/schema/genres";
+import { works } from "@db/schema/works";
 
 export const Work = t.Object({
   id: t.Number(),

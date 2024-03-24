@@ -1,4 +1,4 @@
-import type { FoundComposers } from "../db/queries/searchComposers";
+import type { FoundComposers } from "@db/queries/searchComposers";
 
 function getBaseUrl(): string {
   const port = window.location.port ? `:${window.location.port}` : "";

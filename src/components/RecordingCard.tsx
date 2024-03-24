@@ -1,5 +1,5 @@
-import type { Recording } from "../db/queries/recordingsByWork";
-import { formatWorkLength, formatYearsRangeString } from "../lib/helpers";
+import type { Recording } from "@db/queries/recordingsByWork";
+import { formatWorkLength, formatYearsRangeString } from "@lib/helpers";
 import { PerformerCard } from "./PerformerCard";
 import { StreamerCard } from "./StreamerCard";
 

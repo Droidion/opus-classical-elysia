@@ -1,9 +1,9 @@
-import { AppLayout } from "../components/AppLayout";
-import { RecordingCard } from "../components/RecordingCard";
-import { dbConnect } from "../db/connect";
-import { getRecordingsByWork } from "../db/queries/recordingsByWork";
-import { getWorkMetadata } from "../db/queries/workMetadata";
-import { formatWorkName, formatYearsRangeString } from "../lib/helpers";
+import { AppLayout } from "@components/AppLayout";
+import { RecordingCard } from "@components/RecordingCard";
+import { dbConnect } from "@db/connect";
+import { getRecordingsByWork } from "@db/queries/recordingsByWork";
+import { getWorkMetadata } from "@db/queries/workMetadata";
+import { formatWorkName, formatYearsRangeString } from "@lib/helpers";
 
 export async function WorkPage({
   workId,

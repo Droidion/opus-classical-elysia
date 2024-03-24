@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import type { DrizzleDb } from "../connect";
-import { type Country, type NewCountry, countries } from "../schema/countries";
+import type { DrizzleDb } from "@db/connect";
+import { type Country, type NewCountry, countries } from "@db/schema/countries";
 
 export async function getCountries(db: DrizzleDb): Promise<Country[]> {
   return await db

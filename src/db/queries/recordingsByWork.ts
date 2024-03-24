@@ -1,8 +1,8 @@
 import { and, eq, sql } from "drizzle-orm";
 import { sort } from "fast-sort";
 import { t, type Static } from "elysia";
-import type { DrizzleDb } from "../connect";
-import { filterUniqueBy } from "../../lib/filterByUniqueId";
+import type { DrizzleDb } from "@db/connect";
+import { filterUniqueBy } from "@lib/filterByUniqueId";
 import {
   instruments,
   performers,

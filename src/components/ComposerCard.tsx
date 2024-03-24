@@ -1,5 +1,5 @@
-import type { Composer } from "../db/queries/composersByPeriods";
-import { formatYearsRangeString } from "../lib/helpers";
+import type { Composer } from "@db/queries/composersByPeriods";
+import { formatYearsRangeString } from "@lib/helpers";
 
 export function ComposerCard(
   props: Html.PropsWithChildren<{ composer: Composer }>,
