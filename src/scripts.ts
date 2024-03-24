@@ -1,4 +1,9 @@
 import "./styles.css";
 
-export const foo: number = 2;
-console.log(foo);
+import Search from "./components/Search.svelte";
+
+const search = new Search({
+  target: document.getElementById("search")!,
+});
+
+export default search;

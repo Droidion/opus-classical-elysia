@@ -7,6 +7,7 @@ import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
 import { ComposerPage } from "./pages/ComposerPage";
 import { WorkPage } from "./pages/WorkPage";
+import { searchComposers } from "./db/queries/searchComposers";
 
 const app = new Elysia()
   .use(
@@ -39,7 +40,7 @@ const app = new Elysia()
   .get("/composer/:slug/work/:workId", ({ params: { workId } }) => (
     <WorkPage workId={Number(workId)} />
   ))
-  .get("/composers", async () => await getComposersByPeriods(dbConnect()))
+  .get("/composers/search", async () => await searchComposers(dbConnect()))
   .listen(3000);
 
 console.log(

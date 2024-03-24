@@ -9,6 +9,7 @@ export function AppHeader(): JSX.Element {
         <div class="mr-4">
           <ThemeSwitcher />
         </div>
+        <div id="search" />
       </nav>
     </header>
   );
