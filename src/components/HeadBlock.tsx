@@ -8,8 +8,8 @@ async function getProdAssets() {
   const cssPath = contents["src/scripts.ts"].css[0] as string;
   return (
     <>
-      <link rel="stylesheet" href={"/public/" + cssPath} />
-      <script defer type="module" src={"/public/" + jsPath} />
+      <link rel="stylesheet" href={`/public/${cssPath}`} />
+      <script defer type="module" src={`/public/${jsPath}`} />
     </>
   );
 }

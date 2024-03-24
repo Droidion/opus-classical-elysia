@@ -53,7 +53,7 @@
         selectedSearchResultIndex =
             selectedSearchResultIndex < searchResults.length - 1
                 ? selectedSearchResultIndex + 1
-                : (selectedSearchResultIndex = 0);
+                : 0;
     }
 
     function clickOutside(
@@ -76,13 +76,13 @@
     }
 
     function handleKeydown(event: KeyboardEvent) {
-        if (event.code == "ArrowUp" && searchResults.length > 0) {
+        if (event.code === "ArrowUp" && searchResults.length > 0) {
             moveSelectionUp();
-        } else if (event.code == "ArrowDown" && searchResults.length > 0) {
+        } else if (event.code === "ArrowDown" && searchResults.length > 0) {
             moveSelectionDown();
-        } else if (event.code == "Escape") {
+        } else if (event.code === "Escape") {
             hideSearch();
-        } else if (event.code == "Enter" && searchResults.length > 0) {
+        } else if (event.code === "Enter" && searchResults.length > 0) {
             redirectOnSearchResult();
         }
     }

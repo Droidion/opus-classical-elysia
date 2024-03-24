@@ -1,7 +1,8 @@
 import type { FoundComposers } from "../db/queries/searchComposers";
 
 function getBaseUrl(): string {
-  return `${window.location.protocol}//${window.location.hostname}${window.location.port ? ":" + window.location.port : ""}`;
+  const port = window.location.port ? `:${window.location.port}` : "";
+  return `${window.location.protocol}//${window.location.hostname}${port}`;
 }
 
 async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {

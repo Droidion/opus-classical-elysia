@@ -3,7 +3,6 @@ import { staticPlugin } from "@elysiajs/static";
 import { helmet } from "elysia-helmet";
 import { isHtml } from "@elysiajs/html";
 import { IndexPage } from "./pages/IndexPage";
-import { getComposersByPeriods } from "./db/queries/composersByPeriods";
 import { dbConnect } from "./db/connect";
 import { ComposerPage } from "./pages/ComposerPage";
 import { WorkPage } from "./pages/WorkPage";

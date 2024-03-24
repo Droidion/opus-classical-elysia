@@ -8,8 +8,7 @@
     "dev": "bun run --watch src/index.tsx",
     "build": "bun build src/index.tsx",
     "start": "NODE_ENV=production bun src/index.tsx",
-    "lint": "bunx --bun @biomejs/biome lint --apply ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "bunx --bun @biomejs/biome lint --apply ./src"
   },
   "dependencies": {
     "@biomejs/biome": "^1.6.2",
