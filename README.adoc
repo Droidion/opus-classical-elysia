@@ -4,6 +4,8 @@ Curated catalogue for streaming classical music.
 
 Bun, Elysia, DrizzleORM, Turso, Tailwind, Vite.
 
+https://github.com/Droidion/opus-classical-elysia/actions/workflows/test.yml[image::https://github.com/Droidion/opus-classical-elysia/actions/workflows/test.yml/badge.svg[test-and-lint]]
+
 == Run locally
 
 * Have Bun installed.
