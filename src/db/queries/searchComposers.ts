@@ -2,13 +2,15 @@ import { t, type Static } from "elysia";
 import type { DrizzleDb } from "@db/connect";
 import { composers } from "@db/schema/composers";
 
-export const FoundComposers = t.Array(
-  t.Object({
-    firstName: t.String(),
-    lastName: t.String(),
-    slug: t.String(),
-  }),
-);
+export const FoundComposer = t.Object({
+  firstName: t.String(),
+  lastName: t.String(),
+  slug: t.String(),
+});
+
+export type FoundComposer = Static<typeof FoundComposer>;
+
+export const FoundComposers = t.Array(FoundComposer);
 
 export type FoundComposers = Static<typeof FoundComposers>;
 
