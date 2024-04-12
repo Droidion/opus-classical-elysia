@@ -1,104 +1,104 @@
 <script lang="ts">
-    import type { FoundComposers } from "@db/queries/searchComposers";
-    import { getSearchComposersData } from "@lib/apiClient";
-    import Fuse from "fuse.js";
+import type { FoundComposers } from "@db/queries/searchComposers";
+import { getSearchComposersData } from "@lib/apiClient";
+import Fuse from "fuse.js";
 
-    let searchData: FoundComposers = [];
-    let searchResults: FoundComposers = [];
-    let isSearchVisible = false;
-    let selectedSearchResultIndex = 0;
+let searchData: FoundComposers = [];
+let searchResults: FoundComposers = [];
+let isSearchVisible = false;
+let selectedSearchResultIndex = 0;
 
-    function search(q: string): void {
-        const keys = ["firstName", "lastName"];
-        const fuse = new Fuse(searchData, {
-            keys,
-        });
+function search(q: string): void {
+  const keys = ["firstName", "lastName"];
+  const fuse = new Fuse(searchData, {
+    keys,
+  });
 
-        searchResults = fuse
-            .search(q)
-            .map((result) => result.item)
-            .slice(0, 5);
-    }
+  searchResults = fuse
+    .search(q)
+    .map((result) => result.item)
+    .slice(0, 5);
+}
 
-    async function fetchSearchData(): Promise<void> {
-        searchData = await getSearchComposersData();
-    }
+async function fetchSearchData(): Promise<void> {
+  searchData = await getSearchComposersData();
+}
 
-    async function showSearch(): Promise<void> {
-        await fetchSearchData();
-        isSearchVisible = true;
-    }
+async function showSearch(): Promise<void> {
+  await fetchSearchData();
+  isSearchVisible = true;
+}
 
-    function hideSearch(): void {
-        searchResults = [];
-        isSearchVisible = false;
-    }
+function hideSearch(): void {
+  searchResults = [];
+  isSearchVisible = false;
+}
 
-    function focus(el: HTMLElement): void {
-        el.focus();
-    }
+function focus(el: HTMLElement): void {
+  el.focus();
+}
 
-    function redirectOnSearchResult() {
-        location.pathname = `/composer/${searchResults[selectedSearchResultIndex]?.slug}`;
-    }
+function redirectOnSearchResult() {
+  location.pathname = `/composer/${searchResults[selectedSearchResultIndex]?.slug}`;
+}
 
-    function moveSelectionUp() {
-        selectedSearchResultIndex =
-            selectedSearchResultIndex > 0
-                ? selectedSearchResultIndex - 1
-                : searchResults.length - 1;
-    }
+function moveSelectionUp() {
+  selectedSearchResultIndex =
+    selectedSearchResultIndex > 0
+      ? selectedSearchResultIndex - 1
+      : searchResults.length - 1;
+}
 
-    function moveSelectionDown() {
-        selectedSearchResultIndex =
-            selectedSearchResultIndex < searchResults.length - 1
-                ? selectedSearchResultIndex + 1
-                : 0;
-    }
+function moveSelectionDown() {
+  selectedSearchResultIndex =
+    selectedSearchResultIndex < searchResults.length - 1
+      ? selectedSearchResultIndex + 1
+      : 0;
+}
 
-    function clickOutside(
-        node: HTMLElement,
-        handler: () => void,
-    ): { destroy: () => void } {
-        const onClick = (event: MouseEvent) =>
-            node &&
-            !node.contains(event.target as HTMLElement) &&
-            !event.defaultPrevented &&
-            handler();
+function clickOutside(
+  node: HTMLElement,
+  handler: () => void,
+): { destroy: () => void } {
+  const onClick = (event: MouseEvent) =>
+    node &&
+    !node.contains(event.target as HTMLElement) &&
+    !event.defaultPrevented &&
+    handler();
 
-        document.addEventListener("click", onClick, true);
+  document.addEventListener("click", onClick, true);
 
-        return {
-            destroy() {
-                document.removeEventListener("click", onClick, true);
-            },
-        };
-    }
+  return {
+    destroy() {
+      document.removeEventListener("click", onClick, true);
+    },
+  };
+}
 
-    function handleKeydown(event: KeyboardEvent) {
-        if (event.code === "ArrowUp" && searchResults.length > 0) {
-            moveSelectionUp();
-        } else if (event.code === "ArrowDown" && searchResults.length > 0) {
-            moveSelectionDown();
-        } else if (event.code === "Escape") {
-            hideSearch();
-        } else if (event.code === "Enter" && searchResults.length > 0) {
-            redirectOnSearchResult();
-        }
-    }
+function handleKeydown(event: KeyboardEvent) {
+  if (event.code === "ArrowUp" && searchResults.length > 0) {
+    moveSelectionUp();
+  } else if (event.code === "ArrowDown" && searchResults.length > 0) {
+    moveSelectionDown();
+  } else if (event.code === "Escape") {
+    hideSearch();
+  } else if (event.code === "Enter" && searchResults.length > 0) {
+    redirectOnSearchResult();
+  }
+}
 
-    function handleSearchInput(event: {
-        currentTarget: HTMLInputElement;
-    }): void {
-        const inputEvent = event.currentTarget.value.trim();
-        if (searchData.length > 0) {
-            search(inputEvent);
-        }
-    }
+function handleSearchInput(event: {
+  currentTarget: HTMLInputElement;
+}): void {
+  const inputEvent = event.currentTarget.value.trim();
+  if (searchData.length > 0) {
+    search(inputEvent);
+  }
+}
 
-    function handleResultHover(index: number): void {
-        selectedSearchResultIndex = index;
-    }
+function handleResultHover(index: number): void {
+  selectedSearchResultIndex = index;
+}
 </script>
 
 <div

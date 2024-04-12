@@ -8,16 +8,17 @@
     "dev": "bun run --watch src/index.tsx",
     "build": "bun build src/index.tsx",
     "start": "NODE_ENV=production bun src/index.tsx",
-    "lint": "bunx --bun @biomejs/biome lint --apply ./src"
+    "lint": "bunx --bun @biomejs/biome lint --apply ./src",
+    "format": "bunx --bun @biomejs/biome format --write ./src"
   },
   "dependencies": {
     "@biomejs/biome": "^1.6.4",
     "@elysiajs/html": "^1.0.2",
     "@elysiajs/static": "^1.0.2",
     "@libsql/client": "^0.6.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@sveltejs/vite-plugin-svelte": "^3.1.0",
     "autoprefixer": "^10.4.19",
-    "drizzle-orm": "^0.30.7",
+    "drizzle-orm": "^0.30.8",
     "elysia": "1.0.13",
     "elysia-helmet": "^1.0.2",
     "fast-sort": "^3.4.0",
