@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
-import { fileURLToPath, URL } from "url";
+import solidPlugin from "vite-plugin-solid";
+import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [solidPlugin()],
+  esbuild: { jsx: "automatic" },
   resolve: {
     alias: [
       {

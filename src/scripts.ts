@@ -1,8 +1,9 @@
 import "./styles.css";
+import { render } from "solid-js/web";
 
-import Search from "@components/Search.svelte";
+import { SearchComponent } from "@components/Search";
 
 const target = document.getElementById("search");
 if (target) {
-  new Search({ target });
+  render(SearchComponent, target);
 }
