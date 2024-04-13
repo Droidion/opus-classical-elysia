@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { t, Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
 import { helmet } from "elysia-helmet";
 import { isHtml } from "@elysiajs/html";
@@ -33,12 +33,25 @@ const app = new Elysia()
     }
   })
   .get("/", () => <IndexPage />)
-  .get("/composer/:slug", ({ params: { slug } }) => (
-    <ComposerPage slug={slug} />
-  ))
-  .get("/composer/:slug/work/:workId", ({ params: { workId } }) => (
-    <WorkPage workId={Number(workId)} />
-  ))
+  .get(
+    "/composer/:slug",
+    ({ params: { slug } }) => <ComposerPage slug={slug} />,
+    {
+      params: t.Object({
+        slug: t.String(),
+      }),
+    },
+  )
+  .get(
+    "/composer/:slug/work/:workId",
+    ({ params: { workId } }) => <WorkPage workId={Number(workId)} />,
+    {
+      params: t.Object({
+        slug: t.String(),
+        workId: t.Numeric(),
+      }),
+    },
+  )
   .get("/composers/search", async () => await searchComposers(dbConnect()))
   .listen(3000);
 
