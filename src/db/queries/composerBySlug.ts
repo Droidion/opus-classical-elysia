@@ -23,16 +23,7 @@ export async function getComposerBySlug(
   slug: string,
 ): Promise<ComposerBySlug> {
   const composerData = await db
-    .select({
-      id: composers.id,
-      firstName: composers.firstName,
-      lastName: composers.lastName,
-      yearBorn: composers.yearBorn,
-      yearDied: composers.yearDied,
-      slug: composers.slug,
-      wikipediaLink: composers.wikipediaLink,
-      imslpLink: composers.imslpLink,
-    })
+    .select()
     .from(composers)
     .where(eq(composers.slug, slug));
 
