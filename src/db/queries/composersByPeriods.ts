@@ -1,7 +1,7 @@
 import { eq, sql } from "drizzle-orm";
 import { t, type Static } from "elysia";
 import type { DrizzleDb } from "@db/connect";
-import { composers, composersCountries, countries, periods } from "@db/schema";
+import { composers, composersView, countries, periods } from "@db/schema";
 
 export const Composer = t.Object({
   firstName: t.String(),
@@ -31,47 +31,17 @@ export async function getComposersByPeriods(
   db: DrizzleDb,
 ): Promise<ComposersByPeriods> {
   const periodsData = await db
-    .select({
-      id: periods.id,
-      name: periods.name,
-      yearStart: periods.yearStart,
-      yearEnd: periods.yearEnd,
-    })
+    .select()
     .from(periods)
     .orderBy(periods.yearStart);
 
   const composersData = await db
-    .select({
-      firstName: composers.firstName,
-      lastName: composers.lastName,
-      yearBorn: composers.yearBorn,
-      yearDied: composers.yearDied,
-      periodId: composers.periodId,
-      slug: composers.slug,
-      countries: sql<string>`GROUP_CONCAT(${countries.name}, ', ')`,
-    })
-    .from(composers)
-    .innerJoin(
-      composersCountries,
-      eq(composersCountries.composerId, composers.id),
-    )
-    .innerJoin(countries, eq(composersCountries.countryId, countries.id))
-    .where(eq(composers.enabled, true))
-    .groupBy(
-      composers.firstName,
-      composers.lastName,
-      composers.yearBorn,
-      composers.yearDied,
-      composers.periodId,
-      composers.slug,
-    )
-    .orderBy(composers.lastName);
+    .select()
+    .from(composersView)
+    .orderBy(composersView.lastName);
 
-  return periodsData.reduce((acc: ComposersByPeriods, periodItem) => {
-    acc.push({
-      ...periodItem,
-      composers: composersData.filter((com) => com.periodId === periodItem.id),
-    });
-    return acc;
-  }, []);
+  return periodsData.map((periodItem) => ({
+    ...periodItem,
+    composers: composersData.filter((com) => com.periodId === periodItem.id),
+  }));
 }

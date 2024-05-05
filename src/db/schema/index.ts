@@ -1,5 +1,5 @@
 import { catalogues, cataloguesRelations } from "./catalogues";
-import { composers, composersRelations } from "./composers";
+import { composers, composersRelations, composersView } from "./composers";
 import {
   composersCountries,
   composersCountriesRelations,
@@ -29,6 +29,7 @@ export {
   composersCountries,
   composersCountriesRelations,
   composersRelations,
+  composersView,
   countries,
   countriesRelations,
   genres,
