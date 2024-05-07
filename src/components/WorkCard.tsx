@@ -6,28 +6,18 @@ import {
   formatWorkName,
 } from "../lib/helpers";
 
-export function WorkCard(
-  props: Html.PropsWithChildren<{ work: Work }>,
-): JSX.Element {
-  const fullName = formatWorkName(
-    props.work.title,
-    props.work.no,
-    props.work.nickname,
-  );
+type Props = { work: Work };
 
+export function WorkCard({ work }: Html.PropsWithChildren<Props>): JSX.Element {
+  const fullName = formatWorkName(work.title, work.no, work.nickname);
   const catalogueNotation = formatCatalogueName(
-    props.work.catalogueName,
-    props.work.catalogueNumber,
-    props.work.cataloguePostfix,
+    work.catalogueName,
+    work.catalogueNumber,
+    work.cataloguePostfix,
   );
 
-  const averageLengthFormatted = formatWorkLength(props.work.averageMintues);
-
-  const composePeriod = formatYearsRangeString(
-    props.work.yearStart,
-    props.work.yearFinish,
-  );
-
+  const averageLengthFormatted = formatWorkLength(work.averageMintues);
+  const composePeriod = formatYearsRangeString(work.yearStart, work.yearFinish);
   const showWorkSubtitle =
     !!fullName || !!catalogueNotation || !!averageLengthFormatted;
 

@@ -5,9 +5,9 @@ import { getRecordingsByWork } from "@db/queries/recordingsByWork";
 import { getWorkMetadata } from "@db/queries/workMetadata";
 import { formatWorkName, formatYearsRangeString } from "@lib/helpers";
 
-export async function WorkPage({
-  workId,
-}: Html.PropsWithChildren<{ workId: number }>): Promise<string> {
+type Props = { workId: number };
+
+export async function WorkPage({ workId }: Props): Promise<string> {
   const work = await getWorkMetadata(dbConnect(), workId);
   const recordings = await getRecordingsByWork(dbConnect(), workId);
 

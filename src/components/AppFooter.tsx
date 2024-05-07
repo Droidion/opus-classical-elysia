@@ -2,11 +2,13 @@ import { GithubIcon } from "./GithubIcon";
 
 export function AppFooter(): JSX.Element {
   return (
-    <footer class="dark:xl:bg-codgray dark:bg-mineshaft flex h-16 w-full max-w-screen-xl items-center justify-center bg-black/20 px-4 xl:bg-white">
+    <footer class="flex items-center justify-center w-full h-16 px-4 bg-black/20 dark:bg-mineshaft dark:xl:bg-codgray max-w-screen-xl xl:bg-white">
       <a
         class="mx-3"
         title="Buy me a coffee"
         href="https://www.buymeacoffee.com/zunh"
+        aria-label="Buy me a coffee"
+        rel="noopener noreferrer"
       >
         <img
           alt="Buy me a coffee"
@@ -20,6 +22,8 @@ export function AppFooter(): JSX.Element {
         class="mx-3"
         title="Github repository"
         href="https://github.com/Droidion/opus-classical-elysia"
+        aria-label="Github repository"
+        rel="noopener noreferrer"
       >
         <GithubIcon />
       </a>

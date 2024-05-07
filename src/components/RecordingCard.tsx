@@ -3,14 +3,15 @@ import { formatWorkLength, formatYearsRangeString } from "@lib/helpers";
 import { PerformerCard } from "./PerformerCard";
 import { StreamerCard } from "./StreamerCard";
 
-export function RecordingCard({
-  recording,
-}: Html.PropsWithChildren<{ recording: Recording }>): JSX.Element {
+type Props = { recording: Recording };
+
+export function RecordingCard({ recording }: Props): JSX.Element {
   const lengthFormatted = formatWorkLength(recording.length);
   const composePeriod = formatYearsRangeString(
     recording.yearStart,
     recording.yearFinish,
   );
+
   return (
     <div class="mb-6 mr-8 mt-2 flex min-w-full flex-1 xl:min-w-[450px]">
       <img

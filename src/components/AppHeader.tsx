@@ -3,9 +3,9 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function AppHeader(): JSX.Element {
   return (
-    <header class="dark:xl:bg-codgray dark:bg-mineshaft top-0 z-10 flex h-16 w-full max-w-screen-xl items-center justify-between bg-black/20 px-4 xl:sticky xl:h-24 xl:bg-white">
+    <header class="flex items-center justify-between w-full h-16 px-4 bg-black/20 top-0 z-10 max-w-screen-xl dark:bg-mineshaft dark:xl:bg-codgray xl:sticky xl:h-24 xl:bg-white">
       <MainLogo />
-      <nav class="menu flex items-center">
+      <nav class="flex items-center menu">
         <div class="mr-4">
           <ThemeSwitcher />
         </div>
