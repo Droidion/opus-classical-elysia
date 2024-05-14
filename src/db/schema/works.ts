@@ -1,17 +1,17 @@
 import { relations } from "drizzle-orm";
 import {
-  type AnySQLiteColumn,
+  type AnyPgColumn,
   index,
   integer,
-  sqliteTable,
+  pgTable,
   text,
   uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 import { catalogues } from "./catalogues";
 import { composers } from "./composers";
 import { genres } from "./genres";
 
-export const works = sqliteTable(
+export const works = pgTable(
   "works",
   {
     id: integer("id").primaryKey(),
@@ -24,7 +24,7 @@ export const works = sqliteTable(
     averageMintues: integer("average_minutes").notNull(),
     parentWorkId: integer("parent_work_id")
       .notNull()
-      .references((): AnySQLiteColumn => works.id),
+      .references((): AnyPgColumn => works.id),
     catalogueId: integer("catalogue_id")
       .notNull()
       .references(() => catalogues.id),

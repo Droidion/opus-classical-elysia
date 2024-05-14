@@ -12,8 +12,7 @@ Bun, Elysia, DrizzleORM, Turso, Tailwind, Vite.
 - Have Turso DB available in the cloud.
 - Create `.env` file with environment variables:
   - `IMAGES_URL`
-  - `DATABASE_URL`
-  - `DATABASE_AUTH_TOKEN`
+  - `POSTGRES_CONNECTION_STRING`
 - Install packages `$ bun i`.
 - Run statis assets build in dev mode `$ bun run ui:dev`.
 - Run in parallel server in dev mode `$ bun run dev`.

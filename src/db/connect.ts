@@ -1,15 +1,11 @@
-import { type LibSQLDatabase, drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
 import * as schema from "./schema";
+import postgres from "postgres";
+import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
 
-export type DrizzleDb = LibSQLDatabase<typeof schema>;
+export type DrizzleDb = PostgresJsDatabase<typeof schema>;
 
-const libSqlClient = createClient({
-  url: Bun.env.DATABASE_URL,
-  authToken: Bun.env.DATABASE_AUTH_TOKEN,
-});
-
-const drizzleDb = drizzle(libSqlClient, { schema });
+const pgClient = postgres(Bun.env.POSTGRES_CONNECTION_STRING, { max: 97 });
+const drizzleDb = drizzle(pgClient, { schema });
 
 export function dbConnect(): DrizzleDb {
   return drizzleDb;

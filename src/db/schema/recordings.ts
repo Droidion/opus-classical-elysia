@@ -2,16 +2,16 @@ import { relations } from "drizzle-orm";
 import {
   index,
   integer,
-  sqliteTable,
+  pgTable,
   text,
   uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 import { labels } from "./labels";
 import { performersRecordingsInstruments } from "./performersRecordingsInstruments";
-import { recordingsStreamers } from "./recordingsStreamers";
+import { links } from "./links";
 import { works } from "./works";
 
-export const recordings = sqliteTable(
+export const recordings = pgTable(
   "recordings",
   {
     id: integer("id").primaryKey(),
@@ -43,7 +43,7 @@ export const recordingsRelations = relations(recordings, ({ one, many }) => ({
     references: [works.id],
   }),
   performersRecordingsInstruments: many(performersRecordingsInstruments),
-  recordingsStreamers: many(recordingsStreamers),
+  links: many(links),
 }));
 
 export type Recording = typeof recordings.$inferSelect;

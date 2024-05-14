@@ -2,15 +2,16 @@ import { relations } from "drizzle-orm";
 import {
   index,
   integer,
+  boolean,
   primaryKey,
-  sqliteTable,
+  pgTable,
   text,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 import { recordings } from "./recordings";
 import { streamers } from "./streamers";
 
-export const recordingsStreamers = sqliteTable(
-  "recordings_streamers",
+export const links = pgTable(
+  "links",
   {
     recordingId: integer("recording_id")
       .notNull()
@@ -19,7 +20,7 @@ export const recordingsStreamers = sqliteTable(
       .notNull()
       .references(() => streamers.id),
     link: text("link").notNull(),
-    isShow: integer("is_show", { mode: "boolean" }).notNull(),
+    isShow: boolean("is_show").notNull(),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.recordingId, t.streamerId] }),
@@ -28,18 +29,15 @@ export const recordingsStreamers = sqliteTable(
   }),
 );
 
-export const recordingsStreamersRelations = relations(
-  recordingsStreamers,
-  ({ one }) => ({
-    recording: one(recordings, {
-      fields: [recordingsStreamers.recordingId],
-      references: [recordings.id],
-    }),
-    streamer: one(streamers, {
-      fields: [recordingsStreamers.streamerId],
-      references: [streamers.id],
-    }),
+export const linksRelations = relations(links, ({ one }) => ({
+  recording: one(recordings, {
+    fields: [links.recordingId],
+    references: [recordings.id],
   }),
-);
+  streamer: one(streamers, {
+    fields: [links.streamerId],
+    references: [streamers.id],
+  }),
+}));
 
-export type RecordingsStreamers = typeof recordingsStreamers.$inferSelect;
+export type links = typeof links.$inferSelect;

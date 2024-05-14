@@ -1,13 +1,8 @@
 import { relations } from "drizzle-orm";
-import {
-  integer,
-  sqliteTable,
-  text,
-  uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
 import { works } from "./works";
 
-export const genres = sqliteTable(
+export const genres = pgTable(
   "genres",
   {
     id: integer("id").primaryKey(),

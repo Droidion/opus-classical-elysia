@@ -1,13 +1,8 @@
 import { relations } from "drizzle-orm";
-import {
-  integer,
-  sqliteTable,
-  text,
-  uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
 import { composers } from "./composers";
 
-export const periods = sqliteTable(
+export const periods = pgTable(
   "periods",
   {
     id: integer("id").primaryKey(),
