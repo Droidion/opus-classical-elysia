@@ -8,7 +8,7 @@ import {
   performers,
   performersRecordingsInstruments,
   recordings,
-  recordingsStreamers,
+  links,
   streamers,
 } from "../schema";
 import { labels } from "../schema/labels";
@@ -62,19 +62,20 @@ export async function getRecordingsByWork(
       workId: recordings.workId,
       yearStart: recordings.yearStart,
       yearFinish: recordings.yearFinish,
-      performers: sql<string>`json_group_array(json_object('firstName', ${performers.firstName}, 'lastName', ${performers.lastName}, 'instrument', ${instruments.name}, 'sort', ${performersRecordingsInstruments.priority}))`,
-      streamers: sql<string>`json_group_array(json_object('link', ${recordingsStreamers.link}, 'streamer', ${streamers.name}, 'prefix', ${streamers.appPrefix}, 'icon', ${streamers.iconName}))`,
+      performers: sql<
+        Performer[]
+      >`json_agg(json_build_object('firstName', ${performers.firstName}, 'lastName', ${performers.lastName}, 'instrument', ${instruments.name}, 'sort', ${performersRecordingsInstruments.priority}))`,
+      streamers: sql<
+        Streamer[]
+      >`json_agg(json_build_object('link', ${links.link}, 'streamer', ${streamers.name}, 'prefix', ${streamers.appPrefix}, 'icon', ${streamers.iconName}))`,
     })
     .from(recordings)
     .leftJoin(labels, eq(recordings.labelId, labels.id))
     .leftJoin(
-      recordingsStreamers,
-      and(
-        eq(recordings.id, recordingsStreamers.recordingId),
-        eq(recordingsStreamers.isShow, true),
-      ),
+      links,
+      and(eq(recordings.id, links.recordingId), eq(links.isShow, true)),
     )
-    .leftJoin(streamers, eq(streamers.id, recordingsStreamers.streamerId))
+    .leftJoin(streamers, eq(streamers.id, links.streamerId))
     .leftJoin(
       performersRecordingsInstruments,
       eq(recordings.id, performersRecordingsInstruments.recordingId),
@@ -100,15 +101,11 @@ export async function getRecordingsByWork(
     .where(eq(recordings.workId, workId));
   return results.map((el) => ({
     ...el,
-    streamers: sort(
-      filterUniqueBy(JSON.parse(el.streamers) as Streamer[], "link"),
-    ).asc((s) => s.streamer),
+    streamers: sort(filterUniqueBy(el.streamers, "link")).asc(
+      (s) => s.streamer,
+    ),
     performers: sort(
-      filterUniqueBy(
-        JSON.parse(el.performers) as Performer[],
-        "lastName",
-        "firstName",
-      ),
+      filterUniqueBy(el.performers, "lastName", "firstName"),
     ).asc((s) => s.sort),
   }));
 }

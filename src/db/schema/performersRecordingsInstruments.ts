@@ -1,15 +1,10 @@
 import { relations } from "drizzle-orm";
-import {
-  index,
-  integer,
-  primaryKey,
-  sqliteTable,
-} from "drizzle-orm/sqlite-core";
+import { index, integer, primaryKey, pgTable } from "drizzle-orm/pg-core";
 import { instruments } from "./instruments";
 import { performers } from "./performers";
 import { recordings } from "./recordings";
 
-export const performersRecordingsInstruments = sqliteTable(
+export const performersRecordingsInstruments = pgTable(
   "performers_recordings_instruments",
   {
     performerId: integer("performer_id")

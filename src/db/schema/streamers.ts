@@ -1,13 +1,8 @@
 import { relations } from "drizzle-orm";
-import {
-  integer,
-  sqliteTable,
-  text,
-  uniqueIndex,
-} from "drizzle-orm/sqlite-core";
-import { recordingsStreamers } from "./recordingsStreamers";
+import { integer, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
+import { links } from "./links";
 
-export const streamers = sqliteTable(
+export const streamers = pgTable(
   "streamers",
   {
     id: integer("id").primaryKey(),
@@ -21,7 +16,7 @@ export const streamers = sqliteTable(
 );
 
 export const streamersRelations = relations(streamers, ({ many }) => ({
-  recordingsStreamers: many(recordingsStreamers),
+  links: many(links),
 }));
 
 export type Streamer = typeof streamers.$inferSelect;

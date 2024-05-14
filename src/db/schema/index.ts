@@ -15,10 +15,7 @@ import {
 } from "./performersRecordingsInstruments";
 import { periods, periodsRelations } from "./periods";
 import { recordings, recordingsRelations } from "./recordings";
-import {
-  recordingsStreamers,
-  recordingsStreamersRelations,
-} from "./recordingsStreamers";
+import { links, linksRelations } from "./links";
 import { streamers, streamersRelations } from "./streamers";
 import { works, worksRelations } from "./works";
 
@@ -46,8 +43,8 @@ export {
   periodsRelations,
   recordings,
   recordingsRelations,
-  recordingsStreamers,
-  recordingsStreamersRelations,
+  links,
+  linksRelations,
   streamers,
   streamersRelations,
   works,

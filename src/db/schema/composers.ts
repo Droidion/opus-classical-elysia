@@ -2,11 +2,12 @@ import { relations } from "drizzle-orm";
 import {
   index,
   integer,
-  sqliteTable,
-  sqliteView,
+  boolean,
+  pgTable,
+  pgView,
   text,
   uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 import { composersCountries } from "./composersCountries";
 import { periods } from "./periods";
 
@@ -22,16 +23,16 @@ const composersBase = {
   slug: text("slug").notNull(),
   wikipediaLink: text("wikipedia_link"),
   imslpLink: text("imslp_link"),
-  enabled: integer("enabled", { mode: "boolean" }).notNull(),
+  enabled: boolean("enabled").notNull(),
 };
 
-export const composers = sqliteTable("composers", composersBase, (table) => ({
+export const composers = pgTable("composers", composersBase, (table) => ({
   idIdx: uniqueIndex("composers_id_idx").on(table.id),
   periodIdIdx: index("composers_period_id_idx").on(table.periodId),
   slugIdx: index("composers_slug_idx").on(table.slug),
 }));
 
-export const composersView = sqliteView("composers_with_countries", {
+export const composersView = pgView("composers_with_countries", {
   ...composersBase,
   countries: text("countries").notNull(),
 }).existing();

@@ -1,13 +1,8 @@
 import { relations } from "drizzle-orm";
-import {
-  integer,
-  sqliteTable,
-  text,
-  uniqueIndex,
-} from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text, uniqueIndex } from "drizzle-orm/pg-core";
 import { recordings } from "./recordings";
 
-export const labels = sqliteTable(
+export const labels = pgTable(
   "labels",
   {
     id: integer("id").primaryKey(),
