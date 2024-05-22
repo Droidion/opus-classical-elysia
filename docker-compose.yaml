@@ -1,14 +1,15 @@
-version: "3.8"
 services:
   opus-classical-ui:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     networks:
       - opusclassical-network
     env_file: .env
     ports:
       - "3000:3000"
+    restart: always
+
 networks:
   opusclassical-network:
     driver: bridge
