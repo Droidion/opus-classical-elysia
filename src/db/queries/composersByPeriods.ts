@@ -14,15 +14,17 @@ export const Composer = t.Object({
 
 export type Composer = Static<typeof Composer>;
 
-export const ComposersByPeriods = t.Array(
-  t.Object({
-    id: t.Number(),
-    name: t.String(),
-    yearStart: t.Nullable(t.Number()),
-    yearEnd: t.Nullable(t.Number()),
-    composers: t.Array(Composer),
-  }),
-);
+const ComposersByPeriod = t.Object({
+  id: t.Number(),
+  name: t.String(),
+  yearStart: t.Nullable(t.Number()),
+  yearEnd: t.Nullable(t.Number()),
+  composers: t.Array(Composer),
+});
+
+export type ComposersByPeriod = Static<typeof ComposersByPeriod>;
+
+export const ComposersByPeriods = t.Array(ComposersByPeriod);
 
 export type ComposersByPeriods = Static<typeof ComposersByPeriods>;
 

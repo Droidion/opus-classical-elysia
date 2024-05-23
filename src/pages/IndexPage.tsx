@@ -1,8 +1,7 @@
 import { AppLayout } from "@components/AppLayout";
-import { ComposerCard } from "@components/ComposerCard";
+import { PeriodCard } from "@components/PeriodCard";
 import { dbConnect } from "@db/connect";
 import { getComposersByPeriods } from "@db/queries/composersByPeriods";
-import { formatYearsRangeString } from "@lib/helpers";
 
 export async function IndexPage(): Promise<string> {
   const periods = await getComposersByPeriods(dbConnect());
@@ -11,23 +10,7 @@ export async function IndexPage(): Promise<string> {
       <div>
         <h1>Composers</h1>
         {periods.map((period) => (
-          <>
-            <h2>
-              <span>{period.name},</span>
-              <span> </span>
-              <span>
-                {formatYearsRangeString(period.yearStart, period.yearEnd)}
-              </span>
-            </h2>
-            <hr />
-            <div class="mb-4 flex flex-wrap">
-              {period.composers.map((composer) => (
-                <a href={`/composer/${composer.slug}`}>
-                  <ComposerCard composer={composer} />
-                </a>
-              ))}
-            </div>
-          </>
+          <PeriodCard period={period} />
         ))}
       </div>
     </AppLayout>
